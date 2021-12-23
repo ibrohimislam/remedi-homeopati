@@ -10,6 +10,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
+          cache: yarn
+      - run: yarn
       - run: yarn build
       - name: Release
         uses: softprops/action-gh-release@v1
