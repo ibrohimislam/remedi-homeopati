@@ -1,13 +1,14 @@
 name: Remedi Homeopati Github Actions
 
-on:
-  push:
-    tags:
-      - "v*.*.*"
+on: "push"
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: "read"
+      id-token: "write"
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -30,3 +31,11 @@ jobs:
         with:
           files: |
             release.zip
+      - id: "auth"
+        uses: "google-github-actions/auth@v0"
+        with:
+          credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
+      - id: "deploy"
+        uses: "google-github-actions/deploy-appengine@v0"
+      - id: "test"
+        run: 'curl "${{ steps.deploy.outputs.url }}"'

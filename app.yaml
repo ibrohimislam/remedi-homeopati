@@ -1,0 +1,11 @@
+runtime: python39
+default_expiration: 365d
+
+handlers:
+  - url: /
+    upload: index.html
+    static_files: index.html
+
+  - url: /dist/(.*)
+    upload: dist/(.*)
+    static_files: dist/\1
