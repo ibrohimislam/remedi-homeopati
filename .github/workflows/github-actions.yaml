@@ -1,0 +1,20 @@
+name: Remedi Homeopati Github Actions
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - run: yarn build
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            dist/index.js
+            dist/indes.js.map
+            index.html
