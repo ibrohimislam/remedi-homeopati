@@ -6,6 +6,10 @@ handlers:
     upload: index.html
     static_files: index.html
 
+  - url: /favicon.png
+    upload: favicon.png
+    static_files: favicon.png
+
   - url: /dist/(.*)
     upload: dist/(.*)
     static_files: dist/\1
